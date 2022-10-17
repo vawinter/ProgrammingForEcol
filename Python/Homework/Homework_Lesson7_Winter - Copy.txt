@@ -1,0 +1,119 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Oct  4 12:33:56 2022
+
+Homework 7: Object-oriented programing
+Author: Veronica Winter
+
+Last Update: <Date> 
+Description:  Answers to homework assignment 7.
+
+"""
+print("\nstart: Correct change")
+# 2.   (40pts) Write a program that will calculate the correct change to give back to a shopper at a 
+# fruit market. Set up a class fruit to do this. The class ‘fruit’ will have three attributes 
+# (variables): name, price, and number, as well as two methods: addFruit and totalCost (for 
+# that type of fruit).  
+
+class fruit:
+    # when object is initiated....
+    def __init__(self, nm, pr):
+    # variables: attributes in fruit
+        self.name = nm
+        self.price = pr
+        self.number = []
+        # list for methods
+        self.totalCost = []
+        self.addFruit = []
+        
+    def printInfo(self):
+        print("Fruit:", self.name, "-", self.price, "-", self.number)
+        
+        def addFruit(self, addFruit):
+            self.addFruit.append(addFruit) 
+        def totalCost(self):
+              return sum(self.totalCost)
+     
+# Apples are sold for $1.15 each, oranges for $1.75 each, mangoes for $2.35 each. 
+
+# Define the fruit above with the class fun
+apple = fruit("apple", 1.15)
+orange = fruit("orange", 1.75)
+mango = fruit("mango", 2.35)
+ 
+# With a while loop, ask the user how much of each fruit they would like to buy, one fruit at a 
+# time. In other words, ask how many apples, how many oranges, how many mangoes. Then 
+# show them what they have in their cart, and ask them if they would like to continue 
+# shopping. If yes, cycle back through so they can add more fruit. If no, exit the loop and tell 
+# them their total cost (there is no sales tax in PA on fruit). 
+ 
+# initiate list 
+cart = []
+# Start of while loop
+start = input("Would you like to shop (y/n): ")
+while start == "y":
+#  User defines how many of each fruit they would like:
+    NumofApples = int(input("How many apples would you like to buy?: "))
+    NumofOrange = int(input("How many oranges would you like to buy?: "))
+    NumofMangoes = int(input("How many mangeos would you like to buy?: "))
+
+# Fruit number = number user defined above
+    apple.num = NumofApples
+    orange.num = NumofOrange
+    mango.num = NumofMangoes
+
+    print("Your cart: ", "Apples:", apple.num, "Oranges: ", orange.num, "Mango: ", mango.num, sep = "\n")
+
+# Cart
+    applecost = apple.num * apple.price
+    orangecost = orange.num * orange.price
+    mangocost = mango.num * mango.price
+    totalCost = [applecost, orangecost, mangocost]
+    print("Your cart total is: $", round(sum(totalCost), 2), sep = '')
+    
+    shopping = input("Would you like to keep shopping? y/n: ")
+    if shopping == "y":
+        NumofApples = int(input("How many apples would you like to buy?: "))
+        NumofOranges = int(input("How many oranges would you like to buy?: "))
+        NumofMangoes = int(input("How many mangeos would you like to buy?: "))
+    
+        # Fruit number = number user defined above
+        #cart.append(fruit(NumofApples, NumofOranges, NumofMangoes))
+        apple.addFruit = NumofApples + apple.num
+        orange.addFruit = NumofOrange + orange.num
+        mango.addFruit = NumofMangoes + mango.num
+    
+        # cart
+        applecost = (apple.num + apple.addFruit) * apple.price
+        orangecost = (orange.num  + orange.addFruit) * orange.price
+        mangocost = (mango.num + mango.addFruit) * mango.price
+        totalCost = [applecost, orangecost, mangocost]
+        
+        print("Your cart: ", "Apples:", apple.addFruit, "Oranges: ", orange.addFruit, "Mango: ", mango.addFruit, sep = "\n")
+else:
+    pay = int(input("Please enter amount you will pay with"))
+# Then have the user enter the amount they will pay with. Calculate the difference (the 
+# amount they get back) and output that to the user.  
+ 
+ 
+# If you are feeling fancy, you could add this code at the end that I wrote for our previous 
+# shopping cart problem (restOfChange is initially the difference between the money given 
+# and the total cost):   
+ 
+ 
+# def numCoins(x, rate): 
+#     return int(x // rate) 
+ 
+# dollars = numCoins(restOfChange, 1) 
+# restOfChange = round(restOfChange - dollars * 1, 2) 
+# quarters = numCoins(restOfChange, 0.25) 
+# restOfChange = round(restOfChange - quarters * 0.25, 2) 
+# dimes = numCoins(restOfChange, 0.10) 
+# restOfChange = round(restOfChange - dimes * 0.10, 2) 
+# nickles = numCoins(restOfChange, 0.05) 
+# pennies = int(round(restOfChange - nickles * 0.05, 2) * 
+# 100) 
+ 
+# print("OK, here is your change:") 
+# print(dollars, "dollars", quarters, "quarters", dimes,  
+#       "dimes", nickles, "nickles", pennies, "pennies") 
