@@ -1,5 +1,5 @@
 ---
-title: "Programming for Ecologists: Homework 3"
+title: "Programming for Ecologists: R Homework 3"
 author: "V. Winter"
 date: "10/19/2022"
 output: word_document
