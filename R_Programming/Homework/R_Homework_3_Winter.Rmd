@@ -1,0 +1,150 @@
+---
+title: "Programming for Ecologists: Homework 3"
+author: "V. Winter"
+date: "10/19/2022"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Question 1
+
+1) Using the “iris” dataset, you will be making two different plots that visualize
+differences between the three species of iris. You can get the iris dataset by typing:
+
+
+```{r iris}
+data(iris)
+
+# Load in libraries
+library(ggplot2)
+library(dplyr)
+```
+
+## Question 1a
+
+ a) Make a scatterplot with sepal width on the x axis and sepal length on the y axis.
+ Color code each species. Add axes labels. Pick a theme. Change the font size of
+ the different elements to your liking. Make any other adjustments you want to
+ make the figure appealing to you. Include both the code and the final figure in
+ your answer.
+ 
+
+### Answer:
+```{r, echo=TRUE}
+plot1 <- iris %>% 
+  # plot iris data set with following aesthetics
+  ggplot(aes(x = Sepal.Width, y = Sepal.Length, col = Species)) +
+  # change point size
+  geom_point(size = 3) +
+  # change labels
+  labs(x = "Sepal Width",
+       y = "Sepa Length",
+       title = "Question 1a graph") +
+  # theme
+  theme_bw() +
+  # change text size and font
+  theme(text=element_text(size=16,  family="mono")) +
+  # center title
+  theme(plot.title = element_text(hjust = 0.5))
+
+plot1
+```
+
+## Question 1b
+
+b) Use a different type of plot to visualize some part of the iris data and edit it to 
+make it look “publication ready”. Include both the code and the final figure in 
+your answer. 
+
+
+
+### Answer:
+```{r, echo=TRUE}
+plot2 <- iris %>% 
+  # plot iris data set with following aesthetics
+  ggplot(aes(x = Sepal.Width, y = Sepal.Length, fill  = Species)) +
+  # change point size
+  geom_boxplot() +
+  # change labels
+  labs(x = "Sepal Width",
+       y = "Sepa Length",
+       title = "Question 1b graph") +
+  # theme
+  theme_classic() +
+  # change text size and font
+  theme(text=element_text(size=16,  family="serif")) +
+  # center title
+  theme(plot.title = element_text(hjust = 0.5)) 
+
+plot2
+```
+### Question 2
+
+2) Find a figure you like in a publication or newspaper. Write out all the different 
+layers that would be required to generate it in ggplot2. Think of this as a pseudocode 
+exercise, but for graphics. 
+
+
+```{r image, fig.cap="Figure 5: Fieberg et al. 2017", fig.align='center', out.width='100%', echo = F}
+knitr::include_graphics("img/figure.png")
+```
+
+
+### Answer:
+```{r, echo = TRUE}
+# # Library to arrange plots
+# library(gridExtra)
+# 
+# # Plot A
+# a <- data %>% 
+#   ggplot() +
+#   # Smooth linear regression line of data
+#   geom_smooth(aes(x = Temperature, y = Density), col = "grey", method = "lm") +
+#   # black line
+#   geom_line(aes(x = Temperature, y = Density), col = "black") +
+#   # red dashed line
+#   geom_smooth(aes(x = Temperature, y = Density), col = "red", linetype = "dashed") +
+#   # labels
+#   labs(x = "Temperature",
+#        y = "Denisty",
+#        title = " y ~ temp",
+#        subtitle = "(A)") +
+#   # y axis limit
+#   ylim(c(0, 0.8)) +
+#   # x axis limit
+#   xlim(c(-4, 4)) +
+#   # theme?
+#   theme_minimal() +
+#   # center title
+#   theme(plot.title = element_text(hjust = 0.5))
+# 
+# # Plot B
+# b <- data %>% 
+#   ggplot() +
+#    # Smooth linear regression line of data
+#   geom_smooth(aes(x = Temperature, y = Density), col = "grey", method = "lm") +
+#   # black line
+#   geom_line(aes(x = Temperature, y = Density), col = "black") +
+#   # red dashed line
+#   geom_smooth(aes(x = Temperature, y = Density), col = "red", linetype = "dashed") +
+#   # labels
+#   labs(x = "Temperature",
+#        y = "Denisty",
+#        title = " y ~ temp + temp^2",
+#        subtitle = "(B)") +
+#   # y axis limit
+#   ylim(c(0, 0.8)) +
+#   # x axis limit
+#   xlim(c(-4, 4)) +
+#   # theme?
+#   theme_minimal()
+#   # center title
+#   theme(plot.title = element_text(hjust = 0.5))
+# 
+# # Put plots together
+# plot_full <- grid.arrange(a, b)
+```
+
