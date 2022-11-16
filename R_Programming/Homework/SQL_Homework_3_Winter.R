@@ -46,11 +46,25 @@ dbBind(del, params = list(x = "VOL", "VRI"))
 
 
 
+# Question 2 ----
+# 2) (20pts) Revisiting the Comte et al. (2016) database once again, do the following 
+# after opening the database called “Comte_et_al_2016.db”: 
+con2 <- dbConnect(drv = RSQLite::SQLite(), "SQL/Comte_et_al_2016.db")
+dbListTables(con2)
+  
+# a) (10pts) Join the “trans” and “site” tables using the key “SiteID” and save as a VIEW 
+# called “together”. Then using a separate statement, store this VIEW. Finally print out the 
+# first few lines. This should be done using SQL code within Python or R. 
+together <- dbGetQuery(con2, 'SELECT * FROM trans LEFT JOIN site
+                 ON trans.SiteID = site.SiteID LIMIT 10')
+together
 
-
-
-
-
+# b) (10pts) What is the count of extirpations from P1 to P2 for northern pike (lucius) 
+# for each basin? This should be done using SQL code within Python or R. 
+count <- dbGetQuery(con2, 'SELECT COUNT(Per1) AS extripations_P1, Basin
+                    FROM together WHERE Per1 = "P1"
+                    GROUP BY Basin')
+count
 
 
 
